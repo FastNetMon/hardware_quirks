@@ -12,3 +12,8 @@ lspci |grep Mellanox
 01:00.0 Ethernet controller: Mellanox Technologies CX8 Family [ConnectX-8]
 01:00.1 Ethernet controller: Mellanox Technologies CX8 Family [ConnectX-8]
 ```
+
+## Updated BIOS to 2503, Release Date: 09/18/2026
+
+No improvements
+
