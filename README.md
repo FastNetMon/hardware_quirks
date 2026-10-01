@@ -4,6 +4,8 @@ With BIOS 2103, release date 03/09/2026 system requires around 5 minutes to boot
 
 When installed in next slot machine boots normally but second slot has only PCIE 5.0 x8.
 
+Mellanox card model: C8240 PN: 900-9X81Q-00CN-ST0
+
 lspci:
 ```
 lspci |grep Mellanox
