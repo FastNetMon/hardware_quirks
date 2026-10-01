@@ -1,6 +1,6 @@
 #  Asus ProArt X870E-CREATOR WIFI and NVidia / Mellanox Connect X 8
 
-With BIOS 2103, release date 03/09/2026 system requires around 5 minutes to boot when card is installed in PCIE x16 slot closest to CPU (physically). During this time led VGA is active on motherboard 
+With BIOS 2103, release date 03/09/2026 system requires around 5 minutes to boot when card is installed in PCIE 5.0 x16 slot closest (physically) to CPU. During this time led VGA is active on motherboard 
 
 When installed in next slot machine boots normally but second slot has only PCIE 5.0 x8.
 
