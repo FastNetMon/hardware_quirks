@@ -7,6 +7,7 @@ When installed in next slot machine boots normally but second slot has only PCIE
 Mellanox card model: C8240 PN: 900-9X81Q-00CN-ST0
 
 Firmware: 40.48.1000
+PSID: MT_0000001222
 
 lspci:
 ```
