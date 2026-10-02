@@ -20,3 +20,7 @@ lspci |grep Mellanox
 
 No improvements
 
+## Updated firmware to 40.50.1002 
+
+No improvements 
+
