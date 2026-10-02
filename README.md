@@ -24,3 +24,24 @@ No improvements
 
 No improvements 
 
+### Disabled PXE on network card entirely
+
+Pre change configuration:
+```
+sudo mlxconfig -d 0000:01:00.0 query | grep -i EXP_ROM
+
+
+        EXP_ROM_UEFI_ARM_ENABLE                         True(1)                          
+        EXP_ROM_UEFI_x86_ENABLE                         True(1)                          
+        EXP_ROM_PXE_ENABLE                              True(1)
+```
+
+Configuration change:
+```
+sudo mlxconfig -d 0000:01:00.0 set \
+  EXP_ROM_PXE_ENABLE=0 \
+  EXP_ROM_UEFI_x86_ENABLE=0 \
+  EXP_ROM_UEFI_ARM_ENABLE=0
+```
+
+Result: normal fast boot :) 
