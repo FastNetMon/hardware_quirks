@@ -45,3 +45,22 @@ sudo mlxconfig -d 0000:01:00.0 set \
 ```
 
 Result: normal fast boot :) 
+
+# Necron Sodium ION DTR3N UPS Linux
+
+Apparently it uses Megatec controller and can be enabled for /etc/nut/ups.conf this way:
+
+```
+[netcron]
+    driver = nutdrv_qx
+    port = /dev/ttyUSB1
+    protocol = megatec
+    novendor
+    norating
+    desc = "Necron UPS"
+```
+
+Then:
+```
+
+```
