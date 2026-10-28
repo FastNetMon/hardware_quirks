@@ -70,5 +70,50 @@ lspci |grep mellanox -i
 02:00.1 Ethernet controller: Mellanox Technologies CX8 Family [ConnectX-8]
 ```
 
+Then we do one more check that each device (card itself and addon card) operate on PCIe x16 speed:
+```
+sudo mlxlink -d 0000:01:00.0 --port_type PCIE
 
+PCIe Operational (Enabled) Info
+-------------------------------
+Depth, pcie index, node            : 0, 0, 0
+Link Speed Active (Enabled)        : 32G-Gen 5 (32G-Gen 5)
+Link Width Active (Enabled)        : 16X (16X)
 
+PCIe Operational (Enabled) Info
+-------------------------------
+Depth, pcie index, node            : 0, 1, 0
+Link Speed Active (Enabled)        : 32G-Gen 5 (32G-Gen 5)
+Link Width Active (Enabled)        : 16X (16X)
+
+pavel@epyc-sp5:~$ sudo mlxlink -d 0000:02:00.0 --port_type PCIE
+
+PCIe Operational (Enabled) Info
+-------------------------------
+Depth, pcie index, node            : 0, 0, 0
+Link Speed Active (Enabled)        : 32G-Gen 5 (32G-Gen 5)
+Link Width Active (Enabled)        : 16X (16X)
+
+PCIe Operational (Enabled) Info
+-------------------------------
+Depth, pcie index, node            : 0, 1, 0
+Link Speed Active (Enabled)        : 32G-Gen 5 (32G-Gen 5)
+Link Width Active (Enabled)        : 16X (16X)
+```
+
+Please note that Linux kernel will stop complaining about limited PCIe bandwidth in dmesg and it's OK:
+```
+[    3.196346] mlx5_core 0000:01:00.0: 504.112 Gb/s available PCIe bandwidth (32.0 GT/s PCIe x16 link)
+[    4.712605] mlx5_core 0000:01:00.1: 504.112 Gb/s available PCIe bandwidth (32.0 GT/s PCIe x16 link)
+[    6.100348] mlx5_core 0000:02:00.0: 504.112 Gb/s available PCIe bandwidth (32.0 GT/s PCIe x16 link)
+[    6.666601] mlx5_core 0000:02:00.1: 504.112 Gb/s available PCIe bandwidth (32.0 GT/s PCIe x16 link)
+```
+
+You can compare it with CX 8 without direct connect cable:
+```
+sudo dmesg|grep 'pcie band' -i
+[    1.114800] pci 0000:41:00.0: 504.112 Gb/s available PCIe bandwidth, limited by 32.0 GT/s PCIe x16 link at 0000:40:01.1 (capable of 1024.000 Gb/s with 64.0 GT/s PCIe x16 link)
+[    7.166070] mlx5_core 0000:41:00.0: 504.112 Gb/s available PCIe bandwidth, limited by 32.0 GT/s PCIe x16 link at 0000:40:01.1 (capable of 1024.000 Gb/s with 64.0 GT/s PCIe x16 link)
+[    8.564249] mlx5_core 0000:41:00.1: 504.112 Gb/s available PCIe bandwidth, limited by 32.0 GT/s PCIe x16 link at 0000:40:01.1 (capable of 1024.000 Gb/s with 64.0 GT/s PCIe x16 link)
+```
+```
